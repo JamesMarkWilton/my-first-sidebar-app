@@ -1,14 +1,16 @@
 <div class="mx-auto">
-  <div data-controller="login" class="text-center">
-    <div class="mb-2">
-      <h3 class="text-xl font-bold mb-2">Welcome to the App</h3>
-      <p>
-        To get started, click the button bellow to sign in with your Procore
-        credentials. On the following page, click <b>Allow</b> to allow the
-        application to use your credentials to make requests to the data you
-        have access to.
-      </p>
-    </div>
-    <button data-action="login#login" class="rounded text-base leading-6 pl-5 pr-5 pt-2.5 pb-2.5 whitespace-nowrap text-center inline-flex items-center justify-center bg-[#ff5100] text-white">Login to Procore</button>
+  <div data-controller="login" class="text-center py-8 px-6 shadow-md w-200 rounded-md">
+    <p class="text-md">"Let's Sign a PDF with Adobe"</p>
+    <br>
+
+    <p data-controller="login" data-settings-target="details" class="text-md">Replace with Name | Time | <span data-settings-target="pdfStatus">Status</span></p>
+    <br>
+
+    <button data-contoller="login" data-settings-target="sendButton" data-action="login#login" class="w-full text-white bg-orange-500 rounded-sm px-1 py-1">Sign with Adobe e-Sign</button>
+    <br>
+
+    <br>
+    <p class="text-xs text-grey-900 max-w-1">Click the “Sign with Adobe e-Sign” button above to export</p> 
+    <p class="text-xs text-grey-900 max-w-1">the current file to Adobe e-Sign for electronic signature.</p>
   </div>
 </div>

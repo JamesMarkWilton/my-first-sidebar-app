@@ -2,25 +2,23 @@ import { Controller } from "@hotwired/stimulus";
 import * as procoreIframeHelpers from "@procore/procore-iframe-helpers";
 
 export default class extends Controller {
-  context = procoreIframeHelpers.initialize();
-
   connect() {
-    this.success();
+    window.addEventListener('message', (event) => {
+      if (event.data.source != 'react-devtools-content-script') {
+        console.log(event.data);
+      }
+    });
+
+    window.parent.postMessage({ type: 'initialize' }, "*");
   }
 
   login() {
-    this.context.authentication.authenticate({
-      url: "/auth/procore",
-      onSuccess: function (payload) {
-        window.location = "/me";
-      },
-      onFailure: function (error) {
-        console.log(error);
-      },
+    window.addEventListener('message', (event) => {
+      if (event.data.source != 'react-devtools-content-script') {
+        console.log(event.data);
+      }
     });
-  }
 
-  success() {
-    this.context.authentication.notifySuccess({});
+    window.parent.postMessage({ type: 'initialize' }, "*");
   }
 }
