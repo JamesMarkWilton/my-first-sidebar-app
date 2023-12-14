@@ -10,15 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_23_150631) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_12_225511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "boomi_connections", force: :cascade do |t|
+    t.string "url"
+    t.string "username"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "boomi_connections_users", id: false, force: :cascade do |t|
+    t.bigint "boomi_connection_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["boomi_connection_id"], name: "index_boomi_connections_users_on_boomi_connection_id"
+    t.index ["user_id"], name: "index_boomi_connections_users_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "access_token"
     t.string "refresh_token"
     t.integer "expires_at"
-    t.bigint "procore_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
